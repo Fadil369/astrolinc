@@ -1,0 +1,31 @@
+# dependabot.yml
+
+# This file configures Dependabot to automate dependency updates for your repository.
+
+version: 2
+updates:
+  # Update npm dependencies
+  - package-ecosystem: "npm" # Use npm for package management
+    directory: "/"          # Location of the package.json file
+    schedule:
+      interval: "weekly"    # Check for updates weekly
+      day: "monday"         # Set to run on Mondays
+      time: "08:00"         # Set time in UTC
+    open-pull-requests-limit: 5 # Maximum number of open pull requests
+
+    # Specify additional options for the npm ecosystem
+    commit-message:
+      prefix: "chore(deps)" # Prefix for update PR commit messages
+    rebase-strategy: "auto" # Rebase pull requests automatically when conflicts arise
+    allow:
+      - dependency-type: "all" # Update both direct and indirect dependencies
+    ignore:
+      - dependency-name: "eslint" # Example: Ignore updates for eslint
+
+  # Update GitHub Actions workflows
+  - package-ecosystem: "github-actions" # Use GitHub Actions ecosystem
+    directory: "/"                     # Location of GitHub Actions workflows
+    schedule:
+      interval: "daily"                # Check for updates daily
+      time: "07:00"                    # Set time in UTC
+    open-pull-requests-limit: 3        # Limit open PRs for GitHub Actions updates
